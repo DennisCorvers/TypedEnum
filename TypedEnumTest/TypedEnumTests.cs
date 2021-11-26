@@ -84,5 +84,28 @@ namespace TypedEnumTest
             Assert.IsFalse(testEnum.Equals(nonEq));
             Assert.IsFalse(testEnum.Equals(invalidObj));
         }
+
+        [Test]
+        public void CompareToObjTest()
+        {
+            Assert.AreEqual(1, testEnum.CompareTo(null));
+            Assert.AreEqual(0, testEnum.CompareTo(new TypedEnum<NUnitEnum>(testValue)));
+            Assert.Throws(typeof(ArgumentException), () =>
+            {
+                testEnum.CompareTo(1);
+            });
+        }
+
+        [Test]
+        public void GetHashCodeTest()
+        {
+            Assert.AreEqual(testValue.GetHashCode(), testEnum.GetHashCode());
+        }
+
+        [Test]
+        public void ToStringTest()
+        {
+            Assert.AreEqual(testValue.ToString(), testEnum.ToString());
+        }
     }
 }

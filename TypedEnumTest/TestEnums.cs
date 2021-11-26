@@ -14,4 +14,60 @@ namespace TypedEnumTest
         BatchModeChange = 0x0100,
         RefreshingProperties = 0x0200
     }
+
+    public enum EnumByte : byte
+    {
+        Value1,
+        Value2,
+        Value3
+    }
+
+    public enum EnumSByte : sbyte
+    {
+        Value1,
+        Value2,
+        Value3
+    }
+
+    public enum EnumUShort : ushort
+    {
+        Value1,
+        Value2,
+        Value3
+    }
+
+    public enum EnumShort : short
+    {
+        Value1,
+        Value2,
+        Value3
+    }
+
+    public enum EnumUInt : uint
+    {
+        Value1,
+        Value2,
+        Value3
+    }
+
+    public enum EnumInt : int
+    {
+        Value1,
+        Value2,
+        Value3
+    }
+
+    public enum EnumULong : ulong
+    {
+        Value1,
+        Value2,
+        Value3
+    }
+
+    public enum EnumLong : long
+    {
+        Value1,
+        Value2,
+        Value3
+    }
 }
