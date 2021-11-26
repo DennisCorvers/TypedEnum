@@ -81,14 +81,21 @@ namespace TypedEnum
         public bool Equals(T other)
             => EqualityComparer<T>.Default.Equals(this.value, other);
 
+        public static implicit operator T(TypedEnum<T> other)
+            => other.value;
+
         public override bool Equals(object obj)
         {
-            if (!(obj is TypedEnum<T> e))
+            if (obj is TypedEnum<T> t)
             {
-                return false;
+                return this.Equals(t);
+            }
+            if (obj is T e)
+            {
+                return this.Equals(e);
             }
 
-            return this.Equals(e);
+            return false;
         }
 
         public override int GetHashCode()
