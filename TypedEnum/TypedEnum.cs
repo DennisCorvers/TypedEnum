@@ -8,7 +8,7 @@ namespace TypedEnum
 {
     [DebuggerStepThrough]
     [DebuggerDisplay("{value}")]
-    public struct TypedEnum<T> : IComparable, IComparable<TypedEnum<T>>, IEquatable<TypedEnum<T>>, IEquatable<T>
+    public struct TypedEnum<T> : IComparable, IComparable<TypedEnum<T>>, IEquatable<TypedEnum<T>>
     where T : struct, Enum
     {
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -51,12 +51,6 @@ namespace TypedEnum
         public static bool operator !=(TypedEnum<T> left, TypedEnum<T> right)
             => !(left == right);
 
-        public static bool operator ==(TypedEnum<T> left, T right)
-            => left.Equals(right);
-
-        public static bool operator !=(TypedEnum<T> left, T right)
-            => !(left == right);
-
         public int CompareTo(object obj)
         {
             if (obj == null)
@@ -78,24 +72,17 @@ namespace TypedEnum
         public bool Equals(TypedEnum<T> other)
             => EqualityComparer<T>.Default.Equals(this.value, other.value);
 
-        public bool Equals(T other)
-            => EqualityComparer<T>.Default.Equals(this.value, other);
-
         public static implicit operator T(TypedEnum<T> other)
             => other.value;
 
         public override bool Equals(object obj)
         {
-            if (obj is TypedEnum<T> t)
+            if (!(obj is TypedEnum<T> value))
             {
-                return this.Equals(t);
-            }
-            if (obj is T e)
-            {
-                return this.Equals(e);
+                return false;
             }
 
-            return false;
+            return this.Equals(value);
         }
 
         public override int GetHashCode()

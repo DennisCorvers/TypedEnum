@@ -68,18 +68,6 @@ namespace TypedEnumTest
             var eq = new TypedEnum<NUnitEnum>(testValue);
             var nonEq = new TypedEnum<NUnitEnum>(nonEqTestValue);
 
-            var aaa = eq | NUnitEnum.BatchMode;
-
-            Assert.IsTrue(testEnum.Equals(eq));
-            Assert.IsFalse(testEnum.Equals(nonEq));
-        }
-
-        [Test]
-        public void EqualsEnumTest()
-        {
-            var eq = testValue;
-            var nonEq = nonEqTestValue;
-
             Assert.IsTrue(testEnum.Equals(eq));
             Assert.IsFalse(testEnum.Equals(nonEq));
         }
@@ -91,7 +79,8 @@ namespace TypedEnumTest
             object nonEq = nonEqTestValue;
             object invalidObj = Math.PI;
 
-            Assert.IsTrue(testEnum.Equals(eq));
+            Assert.IsTrue(testEnum.Equals(new TypedEnum<NUnitEnum>(testValue)));
+            Assert.IsFalse(testEnum.Equals(eq));
             Assert.IsFalse(testEnum.Equals(nonEq));
             Assert.IsFalse(testEnum.Equals(invalidObj));
         }
