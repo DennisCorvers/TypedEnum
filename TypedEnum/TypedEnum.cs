@@ -6,7 +6,7 @@ using System.Reflection.Emit;
 
 namespace TypedEnum
 {
-    [DebuggerStepThrough]
+    //[DebuggerStepThrough]
     [DebuggerDisplay("{value}")]
     public struct TypedEnum<T> : IComparable, IComparable<TypedEnum<T>>, IEquatable<TypedEnum<T>>
     where T : struct, Enum
@@ -25,6 +25,11 @@ namespace TypedEnum
             foreach (var enumValue in enumValues)
             {
                 EnumMap.Add(enumValue, enumValue.ToString());
+            }
+
+            if (!EnumMap.ContainsKey(default))
+            {
+                throw new ArgumentException($"Enum type '{typeof(T).Name}' must contain a default value (0).");
             }
         }
 

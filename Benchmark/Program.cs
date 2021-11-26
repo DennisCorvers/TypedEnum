@@ -86,6 +86,7 @@ namespace Benchmark
 
     public enum TestEnum
     {
+        NoValue = 0x0000,
         PropertiesChanged = 0x0001,
         GotDesignerEventService = 0x0002,
         InternalChange = 0x0004,

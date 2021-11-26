@@ -34,5 +34,21 @@ namespace TypedEnumTest
                 var e = new TypedEnum<NUnitEnum>(NUnitEnum.RefreshingProperties | NUnitEnum.ReInitTab);
             });
         }
+
+        [Test]
+        public void CtorDefault()
+        {
+            var e = new TypedEnum<NUnitEnum>();
+            Assert.AreEqual(e.EnumValue, default(NUnitEnum));
+        }
+
+        [Test]
+        public void InvalidType()
+        {
+            Assert.Throws(typeof(TypeInitializationException), () =>
+            {
+                var e = new TypedEnum<InvalidEnum>(InvalidEnum.Value1);
+            });
+        }
     }
 }
